@@ -1,0 +1,72 @@
+<div class="main-page">
+	 <div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="#" class="trips" onclick="detailedSideBar()">Galleries</a>
+		<a href="#" class="trips" onclick="detailedSideBar()">Monuments</a>
+		<a href="#" class="trips" onclick="detailedSideBar()">Heritage sights</a>
+		<a href="#" class="trips" onclick="detailedSideBar()">National parks</a>
+		<a href="#" class="trips" onclick="detailedSideBar()">Museums</a>
+		<a href="#" class="Restaraunts" onclick="detailedSideBar()">Restaraunts<i class="material-icons">restaurant_menu</i></a>
+		<a href="#" class="bars" onclick="detailedSideBar()">Bars</a>
+		<a href="#">Guides</a>
+		<ul>
+	</div>
+	<div id="main">
+	</div>
+
+	<div class="detailedSideNav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeDetailedSideNav()">&times;</a>
+		<div class="detailedDescription">
+			<?php
+			require("connect.php");
+
+			$connection=mysql_connect ($dbhost, $dbuser, $dbpassword);
+			if (!$connection) {  die('Not connected : ' . mysql_error());}
+
+			// Set the active MySQL database
+
+			$db_selected = mysql_select_db($dbname, $connection);
+			if (!$db_selected) {
+			  die ('Can\'t use db : ' . mysql_error());
+			}
+
+
+			$sql = "SELECT attractions.name"."FROM attractions";
+			$stmt = $mysqli ->prepare($sql);
+			$stmt = execute();
+			$stmt = bind_result($names);
+			echo '<ul>';
+			while ($stmt -> fetch()) {
+				printf('<li>%s</li>', $names)
+			}
+			echo '</ul>'
+			$stmt->close();
+			$mysqli->close();
+			?>
+		</div>
+		
+	</div>
+
+	<style>
+	</style>
+	
+
+	<span onclick="openNav()"><i class="material-icons">menu</i></span>
+	<div id="map"></div>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBauu642mrHtUfUOJyNsIdGz2aqlnxkeaE&callback=initMap">
+    </script>
+  
+
+
+	<link rel="stylesheet" href="index.css" type="text/css">
+	<link rel="stylesheet" href="side-bar.css" type="text/css">
+	<script src="index.js"></script>
+	<script src="side-bar.js"></script>
+
+
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<div>
