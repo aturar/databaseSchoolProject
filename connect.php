@@ -1,7 +1,7 @@
 <?php
 $dbhost = 'mansci-db.uwaterloo.ca';
 $dbuser = 'aturar';
-$dbpassword = 'Shpokichi123';
+$dbpassword = '';
 $dbname = 'aturar';
 $mysqli = new mysqli($dbhost, $dbuser, $dbpassword, $dbname);
 if ($mysqli->connect_errno) 
